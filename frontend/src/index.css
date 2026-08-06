@@ -1,0 +1,59 @@
+body{
+    margin:0;
+    background:#eef2f7;
+    font-family:Segoe UI,sans-serif;
+}
+
+.card{
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+a{
+    transition:.3s;
+}
+
+body{
+    background:#F8F5FF;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(124,58,237,.25);
+}
+
+.table{
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.btn{
+    border-radius:10px;
+}
+
+h2,h3,h4{
+    color:#5B21B6;
+    font-weight:700;
+}
+
+body {
+  background: #f8f5ff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.navbar input::placeholder {
+  color: gray;
+}
+
+.navbar input:focus {
+  box-shadow: none;
+}

@@ -1,0 +1,63 @@
+
+
+services:
+
+  db:
+    image: postgres:16
+    container_name: library_postgres
+    restart: always
+
+    environment:
+      POSTGRES_DB: library_management
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sql
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  backend:
+    build: ./backend
+    container_name: library_backend
+
+    command: python manage.py runserver 0.0.0.0:8000
+
+    volumes:
+      - ./backend:/app
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - db
+
+    environment:
+      DB_NAME: library_management
+      DB_USER: postgres
+      DB_PASSWORD: sql
+      DB_HOST: db
+      DB_PORT: 5432
+
+
+  frontend:
+    build: ./frontend
+    container_name: library_frontend
+
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+    command: npm run dev -- --host
+
+
+volumes:
+  postgres_data:
